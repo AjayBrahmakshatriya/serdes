@@ -10,6 +10,9 @@ struct foo {
 	std::string z;
 };
 
+struct bar {
+
+};
 
 int main(int argc, char* argv[]) {
 
@@ -19,11 +22,10 @@ int main(int argc, char* argv[]) {
 
 	auto offsets = serdes::get_offsets<foo>();
 
-	for (size_t s = 0; s < offsets.size(); s++) {
-		std::cout << offsets[s];
-		if (s != offsets.size() - 1) {
-			std::cout << ", ";
-		}
+	serdes::get_offsets<bar>();
+
+	for (auto offset: offsets) {
+		std::cout << offset << ", ";
 	}
 	std::cout << std::endl;
 

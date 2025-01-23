@@ -147,9 +147,12 @@ template <typename T, size_t...indices>
 auto get_offsets_impl(std::index_sequence<indices...> _) -> std::array<size_t, sizeof...(indices)> {
 	
 	std::array<size_t, sizeof...(indices)> offsets;
-	offsets[0] = 0;
+	
+	if (sizeof...(indices) == 0) return offsets;
+
 	std::array<size_t, sizeof...(indices)> sizes;
 
+	offsets[0] = 0;
 	T{ubiq_lref_offsets<sizeof...(indices)>(offsets, sizes, indices)...};	
 
 	return offsets;	
